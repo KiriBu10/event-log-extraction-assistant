@@ -122,3 +122,13 @@ def inspect_table(path_to_db, table_name, limit=5):
     rows = cur.fetchall()
     for row in rows:
         print(row)
+
+
+def get_database_schema_execute_all(path_to_csv_files,db_output_dir):
+    # Main execution flow
+    files_structure = discover_csv_files_and_structure(path_to_csv_files)
+    relationships = map_relationships(files_structure)
+    sorted_table_names = sort_tables_by_dependency(relationships)
+    create_database_and_tables(files_structure, relationships, sorted_table_names, db_output_dir = db_output_dir)
+    return get_database_schema(path_to_db=db_output_dir)
+    
