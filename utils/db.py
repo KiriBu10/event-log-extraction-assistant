@@ -2,7 +2,6 @@ import os
 import sqlite3
 import pandas as pd
 
-
 # Function to safely quote identifiers
 def quote_identifier(identifier):
     return f'"{identifier}"'
@@ -56,7 +55,6 @@ def sort_tables_by_dependency(relationships):
             sorted_tables.append(table)
     
     return sorted_tables
-
 
 # Create Database and Tables
 def create_database_and_tables(files_structure, relationships, sorted_table_names, db_output_dir = 'example.db'):
@@ -123,6 +121,20 @@ def inspect_table(path_to_db, table_name, limit=5):
     for row in rows:
         print(row)
 
+def run_query_and_return_df(path_to_db, query, params=None):
+    """
+    Executes a SQL query and returns the results as a pandas DataFrame.
+    
+    :param path_to_db: The path to the SQLite database file.
+    :param query: The SQL query string to be executed.
+    :param params: Optional parameters to be bound to the query. Defaults to None.
+    :return: A pandas DataFrame containing the results of the query.
+    """
+    # Connect to the SQLite database
+    with sqlite3.connect(path_to_db) as conn:
+        # If params is None, pandas will execute the query without parameters
+        df = pd.read_sql_query(query, conn, params=params)
+    return df
 
 def get_database_schema_execute_all(path_to_csv_files,db_output_dir):
     # Main execution flow
