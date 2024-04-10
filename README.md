@@ -1,7 +1,7 @@
 # Event Log Extractor README
 
 ## Overview
-This Python project automates the extraction of event logs from databases using a LLM model. The system takes a user prompt and a CSV file to create a SQLite database. The user prompt and the database schema are then used to generate a SQL query via a large language model (OpenAI's GPT). The SQL query is executed, and the results are validated against a ground truth dataframe by calculating metrics such as precision, recall, and F1 score.
+This Python project automates the extraction of event logs from databases using a LLM model. Considering CSV files the system creates a SQLite database. Then a user prompt and the database schema are used to generate a SQL query via a large language model (OpenAI's GPT). The SQL query is executed, and the results are validated against a ground truth dataframe by calculating metrics such as precision, recall, and F1 score.
 
 ## Prerequisites
 - Python 3.10
