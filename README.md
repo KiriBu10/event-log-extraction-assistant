@@ -37,17 +37,20 @@ This Python project automates the extraction of event logs from databases using 
 
 ### Adding New Databases
 - Place new CSV files in the `testDBs` directory.
+- Be aware to create also a csv schema file (csv_schema.xlsx). See how to create it in the example test1 folder. 
 - Structure your database files as follows:
   ```
   testDBs/
   ├── test1/
   │   ├── db/
   │   │   └── yourdata.csv
-  │   └── ground_truth.csv
+  │   ├── ground_truth.csv
+  │   └── csv_schema.xlsx
   ├── test2/
   │   ├── db/
   │   │   └── anotherdata.csv
-  │   └── ground_truth.csv
+  │   ├── ground_truth.csv
+  │   └── csv_schema.xlsx
   ```
 
 ### Running Test Cases
