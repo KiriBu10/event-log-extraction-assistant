@@ -117,12 +117,20 @@ def create_database_and_tables(files_structure, sorted_table_names, column_types
         print(create_table_sql)
         cur.execute(create_table_sql)
     
+
+    def insert_data_into_db(table_name):
+        details = files_structure[table_name]
+        details['data'].to_sql(table_name, conn, if_exists='append', index=False, method="multi")
+        print(f"Data inserted into table {table_name}")
     # Insert data in sorted order
-    for table_name in sorted_table_names:
-        if table_name in files_structure:
-            details = files_structure[table_name]
-            details['data'].to_sql(table_name, conn, if_exists='append', index=False, method="multi")
-            print(f"Data inserted into table {table_name}")
+    if len(sorted_table_names) != 0:
+        for table_name in sorted_table_names:
+            if table_name in files_structure:
+                insert_data_into_db(table_name)
+    else:
+        for table_name in files_structure.keys():
+            insert_data_into_db(table_name)
+
 
     conn.commit()
     conn.close()
@@ -211,8 +219,10 @@ def run_query_and_return_df(path_to_db, query, params=None):
 def get_database_schema_execute_all(path_to_csv_files,path_to_csv_schema_file, db_output_dir):
     # Main execution flow
     files_structure = discover_csv_files_and_structure(path_to_csv_files)
+    #print(files_structure)
     relationships, column_types = read_csv_schema_from_excel(path_to_csv_schema_file)
     sorted_table_names = sort_tables_by_dependency(relationships)
+    #print(sorted_table_names)
     create_database_and_tables(files_structure, sorted_table_names,column_types, db_output_dir = db_output_dir)
     return get_database_schema(path_to_db=db_output_dir)
     
