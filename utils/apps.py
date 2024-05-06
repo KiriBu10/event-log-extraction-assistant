@@ -28,11 +28,11 @@ class SimpleApp():
             state['sqlexecuter'] = df
         except Exception as e:
             state['sqlexecuter'] = 'ERROR'
-        return state         
+        return state
     
     def calculate_metrics(self, state):
         if type(state['sqlexecuter']) != str:
-            df_true = pd.read_csv(self.path_to_groud_truth_eventlog)
+            df_true = pd.read_csv(self.path_to_groud_truth_eventlog, dtype='object')
             state['result'] = dataframe_similarity(df_true, state['sqlexecuter'])
         return state
         

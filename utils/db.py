@@ -177,6 +177,7 @@ def run_query_and_return_df(path_to_db, query, params=None):
     with sqlite3.connect(path_to_db) as conn:
         # If params is None, pandas will execute the query without parameters
         df = pd.read_sql_query(query, conn, params=params)
+    conn.close()
     return df
 
 def get_database_schema_execute_all(path_to_csv_files,path_to_csv_schema_file, db_output_dir):

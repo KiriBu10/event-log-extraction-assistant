@@ -5,9 +5,12 @@ def dataframe_similarity(df1, df2):
     if set(df1.columns) != set(df2.columns):
         return "Can't calculate Precision, Recall and F1. DataFrames must have the same columns"
     
-    df1 = df1.sort_index(axis=1).reset_index(drop=True)
-    df2 = df2.sort_index(axis=1).reset_index(drop=True)
+    # df1 = df1.sort_index(axis=1).reset_index(drop=True)
+    # df2 = df2.sort_index(axis=1).reset_index(drop=True)
     
+    df1 = df1.sort_values(by=list(df1.columns)).reset_index(drop=True)
+    df2 = df2.sort_values(by=list(df1.columns)).reset_index(drop=True)
+
     # Create tuples of the rows
     df1['combined'] = df1.apply(lambda row: tuple(row), axis=1)
     df2['combined'] = df2.apply(lambda row: tuple(row), axis=1)
