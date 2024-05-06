@@ -1,0 +1,12 @@
+Each record in each table represents at least one event.
+If a table contains multiple timestamp attributes, then each of these attributes is related to an event.
+Use the name of the column as the default value of the activity_id.
+
+Use CaseID as the case notion.
+When a table does not have an attribute that contains the selected case notion, combine the necessary tables to obtain this case notion.
+
+Do not use the AutoDrive_Event_500_20201215_Sample table.
+
+Use for all timestamps the most detailed timeformat that occurs in the tables.
+If a value in the table is empty or NULL leave out the whole record.
+Provide only the SQL query, no other comments should be part of the response.
