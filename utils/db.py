@@ -195,4 +195,11 @@ def get_database_schema_execute_all(path_to_csv_files,path_to_csv_schema_file, d
     #print('4-----------------------')
     create_database_and_tables(files_structure, sorted_table_names,column_types, db_output_dir = db_output_dir)
     return get_database_schema(path_to_db=db_output_dir)
+
+
+    
+
+    
+    
+
     

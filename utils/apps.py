@@ -34,6 +34,8 @@ class SimpleApp():
         if type(state['sqlexecuter']) != str:
             df_true = pd.read_csv(self.path_to_groud_truth_eventlog, dtype='object')
             state['result'] = dataframe_similarity(df_true, state['sqlexecuter'])
+        else:
+            state['result'] = 'Error in SQL statement.'
         return state
         
     
