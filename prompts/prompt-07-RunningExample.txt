@@ -1,0 +1,5 @@
+Use the id of the order as the case_id.
+Use the name of the table as the activity_id.
+Do not use the configuration and click table.
+Combine the payment table with the invoice tableand use the order_id from the invoice as the case_id in the result.
+
