@@ -37,7 +37,7 @@ This Python project automates the extraction of event logs from databases using 
 
 ### Adding New Databases
 - Place new CSV files in the `testDBs` directory.
-- Be aware to create also a csv schema file (csv_schema.xlsx). See how to create it in the example test1 folder. 
+- Be aware to create also a csv schema file (csv_schema.xlsx). See how to create it in the example test1 folder.
 - Structure your database files as follows:
   ```
   testDBs/
@@ -64,6 +64,7 @@ This Python project automates the extraction of event logs from databases using 
 - **Dynamic SQL Query Generation:** Utilizes a language model to generate SQL queries based on user inputs and database schema.
 - **Automatic Database Creation:** Converts CSV files into SQLite databases.
 - **Performance Metrics:** Evaluates SQL query results by comparing with ground truth data using precision, recall, and F1 score.
+- **Information visualization:** Parallel coordinates chart generation to depict a performance metric of multiple versions of a database.
 
 ## Contributing
 
