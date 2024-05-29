@@ -1,5 +1,7 @@
 import os
 import csv
+import re
+
 
 def save_string_to_csv(filename, string_to_save):
     with open(filename, 'w', newline='') as csvfile:
@@ -52,3 +54,12 @@ def save_results(chain_response:dict, output_dir:str, prompt_file:str):
     file_path = create_unique_file(file_path)
     with open(file_path, "w") as file:
         file.write(str(chain_response['result']))
+
+def extract_sql_statement(text):
+    sql_pattern = re.compile(r"(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|GRANT|REVOKE|TRUNCATE|MERGE|CALL|EXPLAIN|SHOW|USE)\b.*?;", re.IGNORECASE | re.DOTALL)
+    match = sql_pattern.search(text)
+    # If a match is found, return the matched string
+    if match:
+        return match.group(0)
+    else:
+        return "no sql query in agent response."

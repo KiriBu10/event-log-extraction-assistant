@@ -2,7 +2,7 @@ from langgraph.graph import Graph
 import pandas as pd
 from utils.db import run_query_and_return_df
 from utils.metrics import dataframe_similarity
-
+from utils.helper import extract_sql_statement
 
 class SimpleApp():
     def __init__(self, path_to_db,path_to_groud_truth_eventlog, llm_model):
@@ -21,7 +21,7 @@ class SimpleApp():
     def run_sql_query(self, state):
         #messages = state['messages']
         #agent_response = messages[-1]
-        agent_response=state['agent_response']
+        agent_response = extract_sql_statement(state['agent_response'])
         #agent_response = 'SELECT * FROM "order" where "id"="o1"'
         try:
             df = run_query_and_return_df(path_to_db = self.path_to_db, query = agent_response)
